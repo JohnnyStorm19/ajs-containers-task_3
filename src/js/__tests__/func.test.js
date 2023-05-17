@@ -29,3 +29,10 @@ test('Срабатывает геттер settings', () => {
   const res = new Map([['music', 'off'], ['theme', 'dark'], ['difficulty', 'easy']]);
   expect(settings.settings).toEqual(res);
 });
+test('Выбрасывается ошибка при вводе несуществующей настройки', () => {
+  const error = 'Настройка не найдена';
+  expect(() => {
+    // eslint-disable-next-line no-unused-vars
+    const settings = new Settings('music', 'max');
+  }).toThrow(error);
+});

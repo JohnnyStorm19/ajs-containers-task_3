@@ -21,6 +21,9 @@ export default class Settings {
     const checkDefault = this.defaultSettings.get(key) === value;
     // проверяем существует ли настройка в массиве с остальными настройками
     const checkValue = this.allSettings.find((el) => el[key] === value);
+    if (!checkDefault && !checkValue) {
+      throw new Error('Настройка не найдена');
+    }
     if (!checkDefault && checkValue) {
       this.defaultSettings.delete(key);
       this.customerSettings.set(key, value);
